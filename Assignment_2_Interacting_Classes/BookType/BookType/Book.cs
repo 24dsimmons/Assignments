@@ -1,66 +1,71 @@
-﻿using System.Text;
-using System.Threading.Tasks;
-
+﻿using System;
+using System.Collections.Generic;
 
 namespace BookType
 {
     public class Book
     {
-        //Atributes for Books
-        public int BookID { get; set; }
-        public string BookTitle { get; set; }
-        public bool IsOut { get; set; }
-        public string BookAuthor { get; set; }
-
-        public DateTime DateCheckedOut { get; set; }
-
-        //Enumerator's for Book Types
-        public enum BookType
+        // ENUM (Book Categories)
+        public enum BookTypeEnum
         {
             Fiction,
             NonFiction
-        public BookType TypeofBook { get; set; }
+        }
 
-        // Collections
-        private List<string> TypeofBookhistory;
+        // Properties (Attributes)
+        public int BookID { get; set; }
+        public string BookTitle { get; set; }
+        public string BookAuthor { get; set; }
+        public bool IsOut { get; set; }
+        public DateTime DateCheckedOut { get; set; }
 
-        // Methods = An action that Classes can do
+        public BookTypeEnum Type { get; set; }
 
+        // History list
+        private List<string> history;
+
+        // Default Constructor
         public Book()
-        // Constructor 
         {
             BookID = 0;
             BookTitle = "Unknown";
-            IsOut = false;
             BookAuthor = "Unknown";
-            BookType = BookType.Fiction;
-            TypeofBookhistory = new List<string>();
+            IsOut = false;
+            Type = BookTypeEnum.Fiction;
 
+            history = new List<string>(); // Creates new empty list called history
         }
 
-        public Book(int  bookID, string bookTitle , bool isOut, string BookAuthor, BookType bookType)
+        // Custom Constructor
+        public Book(int bookID, string bookTitle, string bookAuthor, BookTypeEnum type)
         {
             BookID = bookID;
             BookTitle = bookTitle;
-            IsOut = isOut;
+            BookAuthor = bookAuthor;
+            Type = type;
+
+            IsOut = false;
             DateCheckedOut = DateTime.Now;
-            TypeofBookhistory = new List<string>();
-            bookType.Add ($"Account opened on {DateCheckedOut}")
+
+            history = new List<string>();
+            history.Add($"Book created on {DateCheckedOut}"); // Appends string to the history list
         }
 
-        public virtual void Checkout (Boolean)
+        // Checkout Method
+        public virtual bool Checkout()
         {
             if (IsOut)
             {
-                TypeofBookhistory.Add("Book is currently checkedout! Please Try again another time...")
-                return true; // When isout == true that means that the book is checked out! 
+                history.Add("Book is already checked out.");
+                return false;
             }
 
-            IsOut = false;
-            return TypeofBookhistory.Add("Book is now checkedout to you!")
+            IsOut = true;
+            DateCheckedOut = DateTime.Now;
 
+            history.Add("Book checked out successfully.");
+            return true;
         }
-
+        
     }
-
 }
