@@ -18,7 +18,7 @@ namespace BookType
 
         public override bool Checkout()
         {
-            Console.WriteLine($"Checking out {BookTitle} as a non-fiction book...");
+            Console.WriteLine($"Checking out {bookTitle} as a non-fiction book...");
             return base.Checkout();
         }
     }

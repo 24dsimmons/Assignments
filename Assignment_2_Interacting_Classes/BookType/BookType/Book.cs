@@ -14,7 +14,7 @@ namespace BookType
 
         // Properties (Attributes)
         public int BookID { get; set; }
-        public string BookTitle { get; set; }
+        public string bookTitle { get; set; }
         public string BookAuthor { get; set; }
         public bool IsOut { get; set; }
         public DateTime DateCheckedOut { get; set; }
@@ -28,7 +28,7 @@ namespace BookType
         public Book()
         {
             BookID = 0;
-            BookTitle = "Unknown";
+            bookTitle = "Unknown";
             BookAuthor = "Unknown";
             IsOut = false;
             Type = BookTypeEnum.Fiction;
@@ -40,7 +40,7 @@ namespace BookType
         public Book(int bookID, string bookTitle, string bookAuthor, BookTypeEnum type)
         {
             BookID = bookID;
-            BookTitle = bookTitle;
+            this.bookTitle = bookTitle;
             BookAuthor = bookAuthor;
             Type = type;
 

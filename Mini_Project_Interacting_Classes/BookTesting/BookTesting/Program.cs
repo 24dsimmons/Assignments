@@ -22,7 +22,8 @@ class Program
         );
 
         Console.WriteLine("Attempting checkout...\n");
-        Console.WriteLine("Checking out fiction book...");
+        Console.WriteLine($"Checking out {book1.BookTitle} as a fiction book...");
+        Console.WriteLine($"Checking out {book2.BookTitle} as a non-fiction book...");
 
         book1.Checkout();
         book2.Checkout();
