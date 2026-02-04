@@ -1,5 +1,5 @@
 ﻿
-namespace SmartHomeLib;
+namespace SmarthomeLib;
 
 public abstract class SmartDevice
 {

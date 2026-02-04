@@ -1,53 +1,68 @@
 ﻿using System;
 
-namespace SmartHomeLib;
+namespace SmarthomeLib;
 
 public class SmartLight : SmartDevice
 {
-    private int brightness; // Must be private to allow this value to stay consistant. shouldnt be able to be changed through code. 
+    private int brightness;
     private string color;
 
-    public void SetBrightness (int value) 
-        if (!IsOnline) // ! means NOT
-        {
-            Console.WriteLine ("Light is off. Please power the device on to change brightness!") //print statement
-            return; // Nothing below runs Brightness doesnt change.
-        }
+ 
+    public int Brightness => brightness;
+    public string Color => color;
 
-        if (value < 0 || value > 100) // Checking the invalid values below 0 and above 100!
+    public SmartLight(string deviceId, string name) : base(deviceId, name)
+    {
+        brightness = 100;   
+    }
+
+    public void SetBrightness(int value)
+    {
+        if (!IsPoweredOn)
         {
-            Console.WriteLine ("Brightness must be between 0 and 100.");
+            Console.WriteLine("Light is off. Please power the device on to change brightness!");
             return;
         }
 
-        brightness = value; // only runs if both light = ON and the value is within our given range. 
-        
-    public void SetColor (string newColor)
-    {
-       if (!IspoweredOn)
+        if (value < 0 || value > 100)
         {
-            Console.WriteLine("Light is off. Please power the device on to change Color!") //print statement
-            return; // Nothing below runs Brightness doesnt change.
+            Console.WriteLine("Brightness must be between 0 and 100.");
+            return;
         }
 
-       if (string.IsNullOrEmpty (newColor)) 
-        {
-        Console.WriteLine("Color Cannot be Blank!") //print statement
-            return; // Nothing below runs Brightness doesnt change.
-        
-        newColor = color; 
+        brightness = value;
+    }
 
-    }
-    public override string GetStatus ()
+    public void SetColor(string newColor)
     {
-    return $"Power: {IsPoweredOn},Brightness {Brightness}, Color: {color}"; // Override of GetStatus class.
-    }
-    public override void ApplyMode (string mode)
-    {
-        if (mode == "Night" && IsPoweredOn)
+        if (!IsPoweredOn)
         {
-        Brightness = 10;        
+            Console.WriteLine("Light is off. Please power the device on to change color!");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(newColor))
+        {
+            Console.WriteLine("Color cannot be blank!");
+            return;
+        }
+
+        color = newColor.Trim();
+    }
+
+    public override string GetStatus()
+    {
+        return $"Power: {IsPoweredOn}, Brightness: {brightness}, Color: {color}";
+    }
+
+    public override void ApplyMode(string mode)
+    {
+        if (!IsPoweredOn) return;
+
+        if (mode == "Night")
+        {
+            brightness = 10;
+            color = "Warm White";
         }
     }
-
 }
