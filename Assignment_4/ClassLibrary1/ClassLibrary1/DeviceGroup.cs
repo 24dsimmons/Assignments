@@ -18,11 +18,11 @@ namespace MiniSmartHome
 
             if (smartDevices.Contains(device))
             {
-                throw new InvalidOperationException($"A device with id '{device.DeviceID}' already exists!");
+                throw new InvalidOperationException($"A device with id '{device.DeviceID}' already exists!"); //Throws exception if name is already in smart device list. 
             }
             }
 
-            public void TurnOffAll()
+            public void TurnOffAll() //Turns each device off.
             {
             foreach (SmartDevice device in smartDevices)
             {
@@ -30,7 +30,7 @@ namespace MiniSmartHome
             }
             }
 
-            public void GetStatAll()
+            public void GetStatAll() // gets status for all smart devices.
         {
             foreach (SmartDevice device in smartDevices) {
                 device.GetStatus();

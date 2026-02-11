@@ -10,7 +10,7 @@ namespace MiniSmartHome
         private int Brightness;
 
 
-        public SmartLight(string DeviceID, string name) :base (DeviceID, name)
+        public SmartLight(string DeviceID, string name) :base (DeviceID, name) // Base here is grabing these from the Constructor in SmartDevice!
         {
             Brightness = 0;
         }
@@ -20,13 +20,14 @@ namespace MiniSmartHome
             Brightness = value;
             if (value < 0 || value > 100)
             {
-                throw new ArgumentException(
+                throw new ArgumentException(  // Throwing exception for invalid argument range!
                  "Brightness must be between 0 and 100.");
             }
 
             if (!Power.IsPoweredOn)
             {
-                throw new InvalidOperationException("Light must be powered on to change brightness!");
+                throw new InvalidOperationException("Light must be powered on to change brightness!"); 
+                // Throws invalid operation because the lights brightness cannot be changed if the power is not on!
             }
         }
     
@@ -34,7 +35,7 @@ namespace MiniSmartHome
         public override string GetStatus() // without the override C-Sharp thinks that you are creating a new method. It tells us that we are using this rule but now we are defining it.
         {
             return
-                $"ID: {DeviceID} Name:{DeviceName} Online: {Power.IsOnline} Power: {Power.IsPoweredOn} Brightness: {Brightness}";
+                $"ID: {DeviceID}, Name: {DeviceName}, Online: {Power.IsOnline}, Power: {Power.IsPoweredOn}, Brightness: {Brightness}";
 
 
 
