@@ -24,19 +24,27 @@ const printJobs = [
 ];
 
 function loadPrintQueue(jobs) {
-  const queue = new Queue();
-  // YOUR CODE HERE
+  const queue = new Queue(jobs.length);
+  for (const job in jobs) {
+    queue.enqueue(job);
+  }
+  return queue;
 }
 
 function processPrintQueue(queue) {
   const printed = [];
-  // YOUR CODE HERE
-  return printed;
+  while (!queue.isEmpty()) { // While the queue is NOT empty continue the following:
+    const job = queue.dequeue(); //Taking the next print job out of the array!
+    printed.push(job.name); // Store the name to the printed. 
+  }
+  return printed; // return name of the printed items. 
 }
 
 function totalPages(jobs) {
-  // YOUR CODE HERE
+  return jobs.reduce((total, job) => total + job.pages, 0) //keeps a running total of all jobs and adds them together!
 }
+
+console.log(totalPages(printJobs))
 
 // ════════════════════════════════════════════
 // EXERCISE 2 — Hot Potato Simulation  (20 pts)
