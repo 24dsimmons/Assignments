@@ -42,16 +42,46 @@ function totalPages(jobs) {
 // EXERCISE 2 — Hot Potato Simulation  (20 pts)
 // ════════════════════════════════════════════
 function hotPotato(players, numPasses) {
-  const queue = new Queue();
-  // YOUR CODE HERE
+  const queue = new Queue(players.length);
+
+  for (const player of players) {
+    queue.enqueue(player);
+  }
+
+  while (queue.size > 1) {
+    for (let i =0; i < numPasses -1 ; i++) {
+      queue.enqueue(queue.dequeue());
+    }
+    console.log(`${queue.dequeue()} is eliminated!`)
+  }
+  return queue.dequeue();
 }
 
+console.log("Winner:", hotPotato(["alice", "Bob", "Carol", "David", "Eve"], 7))
+
 function hotPotatoLog(players, numPasses) {
-  const queue = new Queue();
+  const queue = new Queue(players.length);
   const eliminated = [];
-  // YOUR CODE HERE
-  // return { winner: ..., eliminated };
+  
+  for (const player of players) {
+    queue.enqueue(player);
+  }
+
+  while (queue.size > 1) {
+    for (let i =0; i < numPasses -1 ; i++) {
+      queue.enqueue(queue.dequeue());
+    }
+    const out = queue.dequeue();
+    eliminated.push(out)
+  }
+  const winner = queue.dequeue();
+
+  return {eliminated, winner};
 }
+ const result =hotPotatoLog(["Alice", "Bob", "Steven"], 2)
+
+ console.log("Eliminated:", result.eliminated)
+ console.log("Winner:", result.winner)
 
 // ════════════════════════════════════════════
 // EXERCISE 3 — BONUS: Josephus Problem  (15 pts)
