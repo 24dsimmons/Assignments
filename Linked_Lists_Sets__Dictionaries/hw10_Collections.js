@@ -8,24 +8,44 @@ const setA = new Set([1, 2, 3, 4]);
 const setB = new Set([3, 4, 5, 6]);
 
 // TODO 4a: Return a new Set containing the union of a and b.
-function union(a, b) {
-// YOUR CODE HERE
-}
 
+function union(a, b) {
+const result = new Set(a);
+ for (const elm of b) {
+    result.add(elm);
+ }
+ return result;
+}
+console.log(union(setA, setB))
 // TODO 4b: Return a new Set containing the intersection of a and b.
 function intersection(a, b) {
-// YOUR CODE HERE
+const inter = a.intersection(b)
+return inter
 }
+console.log(intersection(setA, setB))
 
 // TODO 4c: Return a new Set containing values in a but not in b.
 function difference(a, b) {
-// YOUR CODE HERE
+const diff = b.difference(a)
+return diff;
+ 
 }
+console.log(difference(setA, setB))
 
 // TODO 4d: Return true if every value in subset exists in superset.
+const test = new Set ([3, 4])
+
 function isSubset(subset, superset) {
-// YOUR CODE HERE
+
+for (const num of subset){
+   if(!superset.has(num)){
+    return false;
+   }
+  }
+  return true;
 }
+console.log("Subset(True):", isSubset(test, setA))
+console.log("Subset(False):", isSubset(setA, setB))
 
 // ════════════════════════════════════════════
 // EXERCISE 5 — Dictionary / Map Practice 
@@ -40,8 +60,13 @@ const inventory = new Map([
 // If item exists, increase its quantity by qty.
 // If item does not exist, add it with qty.
 function addOrUpdateItem(map, item, qty) {
-// YOUR CODE HERE
+ if (map === !null ){
+    qty = qty + 1
+
+ }
+ return item, qty;
 }
+console.log(addOrUpdateItem(inventory, "apples", 10))
 
 // TODO 5b: totalQuantity(map)
 // Return the sum of all quantities stored in the map.
