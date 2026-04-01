@@ -60,26 +60,52 @@ const inventory = new Map([
 // If item exists, increase its quantity by qty.
 // If item does not exist, add it with qty.
 function addOrUpdateItem(map, item, qty) {
- if (map === !null ){
-    qty = qty + 1
-
- }
- return item, qty;
+   if (map.has(item)) {
+   const current = map.get(item);
+   map .set (item, current + qty);
+   }
+   else {
+      map.set(item, qty)
+   }
 }
-console.log(addOrUpdateItem(inventory, "apples", 10))
+addOrUpdateItem(inventory, "apples", 5)
+console.log(inventory.get("apples"))
+
+addOrUpdateItem(inventory, "grapes", 5)
+console.log(inventory.get ("grapes"))
+
 
 // TODO 5b: totalQuantity(map)
 // Return the sum of all quantities stored in the map.
+
+
 function totalQuantity(map) {
-// YOUR CODE HERE
+   let total_sum =0;
+
+   for (let value of map.values()){
+      total_sum += value;
+   
 }
+return total_sum;
+}
+console.log(totalQuantity(inventory))
 
 // TODO 5c: itemsBelowThreshold(map, threshold)
 // Return an array of item names whose quantity is < threshold.
+
+
 function itemsBelowThreshold(map, threshold) {
-// YOUR CODE HERE
+const values_list = [];
+
+   for (let [key, value] of map){
+      if (value < threshold){
+         values_list.push(key)
+      }   
+   }
+   return values_list;
 }
 
+console.log(itemsBelowThreshold(inventory, 7))
 // ════════════════════════════════════════════
 // EXERCISE 6 — BONUS: Simple Hash Function 
 // ════════════════════════════════════════════

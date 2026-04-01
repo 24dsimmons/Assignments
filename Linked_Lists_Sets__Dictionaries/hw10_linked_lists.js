@@ -50,42 +50,100 @@ numbers.append(40);
 // TODO 1a: Return the number of nodes in the list by traversal,
 // not by using list.size.
 function countNodes(list) {
-// YOUR CODE HERE
+let x = 0
+let current = list.head;
+ while (current !== null) {
+    x++;
+    current = current.next
+ }
+ return x;
 }
+
+console.log(countNodes(numbers))
 
 // TODO 1b: Return true if target exists in the list, false otherwise.
 function containsValue(list, target) {
-// YOUR CODE HERE
+let current = list.head;
+while (current !== null) {
+    console.log("Current Value: ", current.value, "Target:", target,  current.value === target);
+    current = current.next;
+    }
+        
 }
+
+console.log(containsValue(numbers, 20))
 
 // TODO 1c: Return the sum of all node values in the list.
 function sumList(list) {
-// YOUR CODE HERE
+    let total = 0;
+    let current = list.head;
+
+    while (current !== null) {
+        total += parseInt(current.value);
+        current = current.next;
+    }
+    return total;
 }
+
+console.log(sumList(numbers))
 
 // ════════════════════════════════════════════
 // EXERCISE 2 — Insertions / Deletions 
 // ════════════════════════════════════════════
 
+const number2 = new LinkedList
+number2.append(15)
+number2.append(3)
+number2.append(74)
+
 // TODO 2a: prepend(list, value)
 // Insert a new node at the front of the list.
 function prepend(list, value) {
-// YOUR CODE HERE
+    const newNode = new Node(value); // Create Node!
+    newNode.next = list.head;
+    list.head = newNode
 }
+
+prepend(number2, 45)
+console.log(countNodes(number2))
+
 
 // TODO 2b: removeFirst(list)
 // Remove and return the first node's value.
 // Return null if the list is empty.
 function removeFirst(list) {
-// YOUR CODE HERE
+if (list.head === null){
+    return null;
 }
+
+const value = list.head.value;
+list.head = list.head.next;
+return value;
+}
+console.log(removeFirst(number2))
+console.log(countNodes(number2))
 
 // TODO 2c: insertAfter(list, target, value)
 // Insert value immediately after the first occurrence of target.
 // Return true if inserted, false if target not found.
 function insertAfter(list, target, value) {
-// YOUR CODE HERE
+let current =list.head;
+
+while (current !== null){
+    if (current.value ===target){
+        const newNode = new Node(value);
+
+        newNode.next = current.next;
+        current.next = newNode;
+        return true;
+    }
+    current =current.next;
+  }
+  return false;
 }
+
+insertAfter(number2, 3, 20)
+console.log(countNodes(number2))
 
 // ════════════════════════════════════════════
 // EXERCISE 3 — BONUS: Reverse a Linked List 
