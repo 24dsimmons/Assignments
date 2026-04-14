@@ -4,7 +4,7 @@
 Wet days had lower average temperatures than dry days in Bradford, PA from Jan 1, 2025 to December 31, 2025.
 
 ## Data Source!
-I used a free weather api that provided archived weather data
+Dataset: Open-Metro Historical Weather API
 Link: https://archive-api.open-meteo.com/v1/archive
 
 ## How to Run!
@@ -25,6 +25,16 @@ Then the data will be printed in a cli format in the terminal.
 Overall, the program runs in O(n) time because there are no nested loops, and each record is processed a small number of times during cleaning, filtering, grouping, and analysis. 
 
 Dictionary (hash table) operations such as insertion and lookup run in O(1) time on average, which makes grouping efficient.
+
+## Methods:
+ * Retrieves daily weather for Bradford Pa, for the year of 2025
+ * Cleaned and Normalized Data from Dataset into WeatherRecord objects
+ * Created a month by month table using a dictionary
+ * Calculated average temperature and monthly precipitation
+ * Compared average temperatures between wet and dry days
+ * Applied a threshold for extreme precipitation values
+
+
 
 ## Findings
 Overall, the results were inconclusive. This may be due to the fact that precipitation includes both rain and snow, which occur under different temperature conditions. Snow typically occurs at colder temperatures, while rain occurs at warmer temperatures, which can affect the overall averages. 

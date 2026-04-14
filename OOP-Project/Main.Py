@@ -35,11 +35,7 @@ def main():
     print("\nTHESIS")
     print(thesis.statement)
 
-    print("\nMonthly Results")
-    print(f"{'month':<10} {'Avg Temp':<12}  {'Total Precip':<15}" )
-
-    for month, stats in result.monthly_stats.items():
-        print(f"{month:<10} {(stats['avg_temp'] * 9/5)+32:<12.2f} {stats['total_precip']:<15.2f}")
+    
 
     print("\nRESULTS")
     print(f"Wet days: {result.wet_day_count}")
@@ -47,7 +43,15 @@ def main():
     print(f"Average temp on wet days: {(result.wet_day_avg_temp* 9/5) + 32 :.2f}")
     print(f"Average temp on dry days: {(result.dry_day_avg_temp * 9/5) + 32 :.2f}") # .2f rounds the number to 2 decimal places. 
     print(f"Difference (wet - dry): {(result.difference* 9/5):.2f}")
-    print(f"Supported: {result.thesis_supported}")
+
+    print("\nMonthly Results")
+    print(f"{'month':<10} {'Avg Temp':<12}  {'Total Precip':<15}" )
+
+    for month, stats in result.monthly_stats.items():
+        print(f"{month:<10} {(stats['avg_temp'] * 9/5)+32:<12.2f} {stats['total_precip']:<15.2f}")
+
+    
+    print(f"\nSupported: {result.thesis_supported}")
     print(result.conclusion)
 
 
