@@ -11,6 +11,10 @@ Wet days had lower average temperatures than dry days in Bradford, PA from Jan 1
 This is ran by simply running the Main.Py file in the root of the folder structure.
 Then the data will be printed in a cli format in the terminal.
 
+Note: the python module "requests" is needed to run this code
+It can be installed by doing the following in your terminal 
+"python -m pip install requests" (without the quotes)
+
 ## Data Structures Used!
 
 ### 1. List
