@@ -3,6 +3,31 @@ from Domain.AnalysisResult import AnalysisResult
 
 class WeatherAnalyzer:
     def analyze(self, records, thesis: Thesis) -> AnalysisResult:
+        filtered_records =[
+            r for r in records
+            if r.precipitation <= thesis.precipitation_threshold
+        ]
+
+        mounthly_groups = {}
+
+        for record in filtered_records:
+            month = record.date[:7]
+
+            if month not in mounthly_groups:
+                mounthly_groups[month] = []
+            mounthly_groups[month].append(record)
+        
+        monthly_stats = {}
+        for month, recs in mounthly_groups.items(): #Taking records for one month
+            avg_temp = sum(r.avg_temperature for r in recs) / len(recs) 
+
+            total_precip = sum(r.precipitation for r in recs) #total precipiation in a month.
+
+            monthly_stats[month] = {
+                "avg_temp": avg_temp, 
+                "total_precip": total_precip
+            } 
+
         wet_days = [r for r in records if r.precipitation > thesis.precipitation_threshold]
         dry_days = [r for r in records if r.precipitation <= thesis.precipitation_threshold]
 
@@ -24,5 +49,6 @@ class WeatherAnalyzer:
             dry_day_avg_temp=dry_avg,
             difference=difference,
             thesis_supported=supported,
-            conclusion=conclusion
+            conclusion=conclusion,
+            monthly_stats=monthly_stats
         )

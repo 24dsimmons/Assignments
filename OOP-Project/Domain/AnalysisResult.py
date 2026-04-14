@@ -9,3 +9,5 @@ class AnalysisResult:
     difference: float
     thesis_supported: bool
     conclusion: str
+    monthly_stats: dict
+    
