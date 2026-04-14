@@ -4,8 +4,8 @@
 Wet days had lower average temperatures than dry days in Bradford, PA from Jan 1, 2025 to December 31, 2025.
 
 ## Data Source!
-Dataset: Open-Metro Historical Weather API
-Link: https://archive-api.open-meteo.com/v1/archive
+* Dataset: Open-Metro Historical Weather API
+* Endpoint: https://archive-api.open-meteo.com/v1/archive
 
 ## How to Run!
 This is ran by simply running the Main.Py file in the root of the folder structure.
