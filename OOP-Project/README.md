@@ -14,8 +14,8 @@ Then the data will be printed in a cli format in the terminal.
 ## Data Structures Used!
 
 ### 1. List
-###  - Stores all weather records
-###  - Used for filtering and iteration
+  * Stores all weather records
+  * Used for filtering and iteration
 
 ### 2. Dictionary
     -
